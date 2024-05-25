@@ -1,39 +1,40 @@
 # OmniPose
 
-  <a href="https://arxiv.org/abs/2103.10180">**OmniPose: A Multi-Scale Framework for Multi-Person Pose Estimation**</a>.
-</p><br />
+[**OmniPose: A Multi-Scale Framework for Multi-Person Pose Estimation**](https://arxiv.org/abs/2103.10180)
 
+![OmniPose Architecture](https://people.rit.edu/bm3768/images/omnipose.png)
 <p align="center">
-  <img src="https://people.rit.edu/bm3768/images/omnipose.png" title="OmniPose Architecture">
-  Figure 1: OmniPose framework for multi-person pose estimation. The input color image of dimensions (HxW) is fed through the improvedHRNet backbone and WASPv2 module to generate one heatmap per joint, or class.
-</p><br />
-
-<p align="justify">
-We propose OmniPose, a multi-scale framework for multi-person pose estimation. The OmniPose architecture leverages multi-scale feature representations to increase the effectiveness of  backbone feature extractors, with no significant increase in network size and no postprocessing. 
-The OmniPose framework incorporates contextual information across scales and joint localization with Gaussian heatmap modulation at the multi-scale feature extractor to estimate human pose with state-of-the-art accuracy.
-The multi-scale representations allowed by the improved waterfall module in the OmniPose framework leverage the efficiency of progressive filtering in the cascade architecture, while maintaining multi-scale fields-of-view comparable to spatial pyramid configurations.
-Our results on multiple datasets demonstrate that OmniPose, with an improved HRNet backbone and waterfall module, is a robust and efficient architecture for multi-person pose estimation with state-of-the-art results. 
-
-We propose the upgraded “Waterfall Atrous Spatial Pyramid” module, shown in Figure 2. WASPv2 is a novel architecture with Atrous Convolutions that is able to leverage both the larger Field-of-View of the Atrous Spatial Pyramid Pooling configuration and the reduced size of the cascade approach.<br />
-
-<p align="center">
-  <img src="https://people.rit.edu/bm3768/images/WASPv2.png" width=1000 title="WASPv2 module"><br />
-  Figure 2: WASPv2 Module.
-</p><br />
-
-Examples of the OmniPose architecture for Multi-Person Pose Estimation are shown in Figures 3.<br />
-
-<p align="center">
-  <img src="https://people.rit.edu/bm3768/images/samples.png" width=1000 title="WASP module"><br />
-  Figure 3: Pose estimation samples for OmniPose.
-  <br /><br />
   
-Link to the published article at <a href="http://www.brunoartacho.com">ArXiv</a>.
-</p><br />
+  Figure 1: OmniPose framework for multi-person pose estimation. The input color image of dimensions (HxW) is fed through the improved HRNet backbone and WASPv2 module to generate one heatmap per joint or class.
+</p>
 
-**Datasets:**
 <p align="justify">
-Datasets used in this paper and required for training, validation, and testing can be downloaded directly from the dataset websites below:<br />
+We propose OmniPose, a multi-scale framework for multi-person pose estimation. The OmniPose architecture leverages multi-scale feature representations to increase the effectiveness of backbone feature extractors, with no significant increase in network size and no postprocessing.
+
+The OmniPose framework incorporates contextual information across scales and joint localization with Gaussian heatmap modulation at the multi-scale feature extractor to estimate human pose with state-of-the-art accuracy.
+The multi-scale representations allowed by the improved waterfall module in the OmniPose framework leverage the efficiency of progressive filtering in the cascade architecture while maintaining multi-scale fields-of-view comparable to spatial pyramid configurations.
+Our results on multiple datasets demonstrate that OmniPose, with an improved HRNet backbone and waterfall module, is a robust and efficient architecture for multi-person pose estimation with state-of-the-art results.
+
+We propose the upgraded “Waterfall Atrous Spatial Pyramid” module, shown in Figure 2. WASPv2 is a novel architecture with Atrous Convolutions that is able to leverage both the larger Field-of-View of the Atrous Spatial Pyramid Pooling configuration and the reduced size of the cascade approach.</p>
+
+![WASPv2 module](https://people.rit.edu/bm3768/images/WASPv2.png)
+<p align="center">
+  Figure 2: WASPv2 Module.
+</p>
+
+Examples of the OmniPose architecture for Multi-Person Pose Estimation are shown in Figure 3.
+
+![WASP module](https://people.rit.edu/bm3768/images/samples.png)
+<p align="center">
+  Figure 3: Pose estimation samples for OmniPose.
+</p>
+  
+Link to the published article at [ArXiv]("http://www.brunoartacho.com").
+
+**datasets:**
+
+<p align="justify">
+datasets used in this paper and required for training, validation, and testing can be downloaded directly from the dataset websites below:<br />
   COCO Dataset: https://cocodataset.org/<br />
   MPII Dataset: http://human-pose.mpi-inf.mpg.de/<br />
 </p><br />
@@ -61,7 +62,7 @@ Download the dataset and extract it at {OMNIPOSE_ROOT}/data, as follows:
             `-- images
                 |-- train2017.zip
                 `-- val2017.zip
-                
+
 **MPII**
 Download the dataset and extract it at {OMNIPOSE_ROOT}/data, as follows:
 
@@ -74,23 +75,28 @@ Download the dataset and extract it at {OMNIPOSE_ROOT}/data, as follows:
             `-- images
 
 #### Training
+
 In order to train OmniPose uncomment the appropriate config file on 'run_train.sh' and run the following command:
-```
+
+```bash
 bash run_train.sh
 ```
 
 #### Testing
+
 In order to test OmniPose uncomment the appropriate config file on 'run_test.sh' and run the following command:
+
 ```
 bash run_demo.sh
 ```
 
 #### Demo
+
 In order to run demo of OmniPose on a sample image, uncomment the appropriate config file on 'run_demo.sh', and python command to the appropriate pre-trained dataset, and run the following command:
+
 ```
 bash run_demo.sh
 ```
-  
   
 **Contact:**
 
@@ -100,10 +106,9 @@ Bruno Artacho:<br />
   Website: https://www.brunoartacho.com<br />
   
 Andreas Savakis:<br />
-  E-mail: andreas.savakis@rit.edu<br />
-  Website: https://www.rit.edu/directory/axseec-andreas-savakis<br /><br />
+  E-mail: <andreas.savakis@rit.edu><br />
+  Website: <https://www.rit.edu/directory/axseec-andreas-savakis><br /><br />
 </p>
-
 
 **Citation:**
 

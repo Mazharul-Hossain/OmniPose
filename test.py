@@ -22,7 +22,7 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.transforms as transforms
 
-import _init_paths
+# import _init_paths
 from config import cfg
 from config import update_config
 from core.loss import JointsMSELoss
@@ -75,13 +75,13 @@ def main(args):
         model = get_omnipose(cfg, is_train=True)
 
     if cfg.TEST.MODEL_FILE:
-        logger.info("=> loading checkpoint '{}'".format(cfg.TEST.MODEL_FILE))
+        logger.info(f"=> loading checkpoint '{cfg.TEST.MODEL_FILE}'")
         checkpoint = torch.load(cfg.TEST.MODEL_FILE)
         begin_epoch = checkpoint['epoch']
         best_perf = checkpoint['perf']
         last_epoch = checkpoint['epoch']
         
-        print('Loading checkpoint with accuracy of 'checkpoint['perf'], 'at epoch ',checkpoint['epoch'])
+        print(f"Loading checkpoint with accuracy of {checkpoint['perf']} at epoch {checkpoint['epoch']}")
 
         model_state_dict = model.state_dict()
         new_model_state_dict = {}
@@ -91,7 +91,7 @@ def main(args):
             if k in model_state_dict and model_state_dict[k].size() == checkpoint['state_dict'][k].size():
                 new_model_state_dict[k] = checkpoint['state_dict'][k]
             else:
-                print('Skipped loading parameter {}'.format(k))
+                print(f'Skipped loading parameter {k}')
 
         model.load_state_dict(checkpoint, strict=False)
 
@@ -104,8 +104,8 @@ def main(args):
         model_state_file = os.path.join(
             final_output_dir, 'final_state.pth'
         )
-        model_state_file = 'models/coco/w48_384×288.pth'
-        logger.info('=> loading model from {}'.format(model_state_file))
+        # model_state_file = 'models/coco/w48_384×288.pth'
+        logger.info(f'=> loading model from {model_state_file}')
 
         model_state_dict = torch.load(model_state_file)
         new_model_state_dict = {}
@@ -113,7 +113,7 @@ def main(args):
             if k in model_state_dict and model_state_dict[k].size() == model_state_dict[k].size():
                 new_model_state_dict[k] = model_state_dict[k]
             else:
-                print('Skipped loading parameter {}'.format(k))
+                print(f'Skipped loading parameter {k}')
 
         model.load_state_dict(new_model_state_dict)
 

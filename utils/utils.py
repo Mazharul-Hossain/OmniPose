@@ -41,7 +41,7 @@ def create_logger(cfg, cfg_name, phase='train'):
     final_output_dir.mkdir(parents=True, exist_ok=True)
 
     time_str = time.strftime('%Y-%m-%d-%H-%M')
-    log_file = '{}_{}_{}.log'.format(cfg_name, time_str, phase)
+    log_file = f'{cfg_name}_{time_str}_{phase}.log'
     final_log_file = final_output_dir / log_file
     head = '%(asctime)-15s %(message)s'
     logging.basicConfig(filename=str(final_log_file),
