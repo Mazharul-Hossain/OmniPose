@@ -2,7 +2,7 @@
 
 Setup the code base first.
 
-    git clone <https://github.com/bmartacho/OmniPose.git>
+    git clone https://github.com/bmartacho/OmniPose.git
 
 ## Setup env
 

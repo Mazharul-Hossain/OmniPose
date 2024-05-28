@@ -7,17 +7,19 @@ DATA_DIR: ''
 GPUS: (0,)
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
-WORKERS: 24
+# WORKERS: 24
+WORKERS: 2
 PRINT_FREQ: 100
 
 DATASET:
   COLOR_RGB: true
   DATASET: 'coco'
-  DATA_FORMAT: jpg
+  # DATA_FORMAT: jpg
+  DATA_FORMAT: zip
   FLIP: true
   NUM_JOINTS_HALF_BODY: 8
   PROB_HALF_BODY: 0.3
-  ROOT: 'tmp/dataset/COCO/'
+  ROOT: 'tmp/data/COCO/'
   ROT_FACTOR: 45
   SCALE_FACTOR: 0.35
   TEST_SET: 'val2017'
@@ -27,7 +29,7 @@ MODEL:
   INIT_WEIGHTS: true
   NAME: omnipose
   NUM_JOINTS: 17
-  PRETRAINED: 'weights/coco/OmniPose_w48_v2/model_best.pth'
+  PRETRAINED: 'tmp/weights/coco/OmniPose_w48_v2/model_best.pth'
   TARGET_TYPE: gaussian
   IMAGE_SIZE:
   - 288
@@ -92,7 +94,8 @@ MODEL:
 LOSS:
   USE_TARGET_WEIGHT: true
 TRAIN:
-  BATCH_SIZE_PER_GPU: 12
+  # BATCH_SIZE_PER_GPU: 12
+  BATCH_SIZE_PER_GPU: 2
   BEGIN_EPOCH: 0
   END_EPOCH: 210
   OPTIMIZER: adam
@@ -107,7 +110,8 @@ TRAIN:
   MOMENTUM: 0.9
   NESTEROV: false
 TEST:
-  BATCH_SIZE_PER_GPU: 12
+  # BATCH_SIZE_PER_GPU: 12
+  BATCH_SIZE_PER_GPU: 2
   COCO_BBOX_FILE: 'data/coco/person_detection_results/COCO_val2017_detections_AP_H_56_person.json'
   # COCO_BBOX_FILE: 'data/coco/person_detection_results/COCO_test-dev2017_detections_AP_H_609_person.json'
   BBOX_THRE: 1.0

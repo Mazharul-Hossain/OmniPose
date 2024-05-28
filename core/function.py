@@ -48,9 +48,15 @@ def train(config, train_loader, model, criterion, optimizer, epoch,
         # measure data loading time
         data_time.update(time.time() - end)
 
-        input  = input.cuda()
-        target = target.cuda()
-        target_weight = target_weight.cuda()
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+        
+        else:
+            device = torch.device("cpu")
+
+        input  = input.to(device) # input.cuda()
+        target = target.to(device) # target.cuda()
+        target_weight = target_weight.to(device) # target_weight.cuda()
 
         # compute output
         # print(model)
@@ -141,9 +147,15 @@ def validate(config, val_loader, val_dataset, dataset_name, model, criterion, ou
         tbar = tqdm(val_loader)
 
         for i, (input, target, target_weight, meta) in enumerate(tbar):
-            input  = input.cuda()
-            target = target.cuda()
-            target_weight = target_weight.cuda()
+            if torch.cuda.is_available():
+                device = torch.device("cuda")
+            
+            else:
+                device = torch.device("cpu")
+
+            input  = input.to(device) # input.cuda()
+            target = target.to(device) # target.cuda()
+            target_weight = target_weight.to(device) # target_weight.cuda()
 
             outputs = model(input)
             if isinstance(outputs, list):

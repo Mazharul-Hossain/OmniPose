@@ -80,10 +80,18 @@ def main(args):
 
     print("Model will be saved at:", final_output_dir)
 
-    # cudnn related setting
-    cudnn.benchmark = cfg.CUDNN.BENCHMARK
-    torch.backends.cudnn.deterministic = cfg.CUDNN.DETERMINISTIC
-    torch.backends.cudnn.enabled = cfg.CUDNN.ENABLED
+    # https://stackoverflow.com/a/62036252/2049763
+    if torch.cuda.is_available():
+        print("Applying cudnn related setting.")
+        cudnn.benchmark = cfg.CUDNN.BENCHMARK
+        torch.backends.cudnn.deterministic = cfg.CUDNN.DETERMINISTIC # True
+        torch.backends.cudnn.enabled = cfg.CUDNN.ENABLED # False
+
+        device = torch.device("cuda")
+    
+    else:
+        device = torch.device("cpu")
+
 
     if cfg.MODEL.NAME == "pose_hrnet":
         model = get_pose_net(cfg, is_train=True)
@@ -107,10 +115,12 @@ def main(args):
     dump_input = torch.rand((1, 3, cfg.MODEL.IMAGE_SIZE[1], cfg.MODEL.IMAGE_SIZE[0]))
     logger.info(get_model_summary(model, dump_input))
 
-    model = model.cuda()
+    # model = model.cuda()
+    model = model.to(device)
 
     # Define loss function and optimizer
-    criterion = JointsMSELoss(use_target_weight=cfg.LOSS.USE_TARGET_WEIGHT).cuda()
+    # criterion = JointsMSELoss(use_target_weight=cfg.LOSS.USE_TARGET_WEIGHT).cuda()
+    criterion = JointsMSELoss(use_target_weight=cfg.LOSS.USE_TARGET_WEIGHT).to(device)
 
     # Data loading code
     normalize = transforms.Normalize(
